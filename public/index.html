@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+      integrity="sha256-9mbkOfVho3ZPXfM7W8sV2SndrGDuh7wuyLjtsWeTI1Q="
+      crossorigin="anonymous"
+    />
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+
+    <title>
+      Repatcha Form
+    </title>
+  </head>
+  <body>
+    <div class="ui text container">
+      <form class="ui form" id="recaptchForm">
+        <div class="field">
+          <label for="fname">First Name</label>
+          <input placeholder="First Name" name="fname" id="fname" />
+        </div>
+        <div class="field">
+          <label for="lname">Last Name</label>
+          <input placeholder="Last Name" name="lname" id="lname" />
+        </div>
+        <div class="field">
+          <div
+            class="g-recaptcha"
+            data-sitekey="6LdpvDEUAAAAAMy8x0y8PS99j4BavfO2oBdVTQGZ"
+          ></div>
+        </div>
+        <button type="submit" class="ui button">Submit</button>
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById('recaptchForm')
+        .addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const fname = document.querySelector('#fname').value;
+          const lname = document.querySelector('#lname').value;
+          const captcha = document.querySelector('#g-recaptcha-response').value;
+          try {
+            const response = await fetch('/subscribe', {
+              method: 'POST',
+              headers: { 'Content-type': 'application/json' },
+              body: JSON.stringify({ fname, lname, captcha }),
+            });
+            const data = await response.json();
+            console.log(data);
+            alert(data.msg);
+          } catch (e) {
+            console.log('e.message :>> ', e.message);
+          }
+        });
+    </script>
+  </body>
+</html>

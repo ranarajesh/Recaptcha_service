@@ -1,0 +1,23 @@
+{
+  "name": "recaptcha_service",
+  "version": "1.0.0",
+  "description": "Recaptch service ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ranarajesh/Recaptcha_service.git"
+  },
+  "author": "Rajesh Kumar Rana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ranarajesh/Recaptcha_service/issues"
+  },
+  "homepage": "https://github.com/ranarajesh/Recaptcha_service#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0"
+  }
+}
